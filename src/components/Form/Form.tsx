@@ -1,7 +1,9 @@
 import "./form.sass";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { Dropdown } from "react-bootstrap";
 
 const Form = () => {
+  const [searchBy, setSearchBy] = useState<"Title" | "Author">("Title");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const GetBooks = () => {
@@ -10,8 +12,22 @@ const Form = () => {
 
   return (
     <div>
-      <div>Title</div>
-      <input type="text" ref={inputRef} />
+      <Dropdown>
+        <Dropdown.Toggle variant="success" id="dropdown-basic">
+          Search by
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={() => setSearchBy("Title")}>
+            Title
+          </Dropdown.Item>
+          <Dropdown.Item onClick={() => setSearchBy("Author")}>
+            Author
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+
+      <input type="text" placeholder={searchBy} ref={inputRef} />
       <button onClick={GetBooks}> Get books </button>
     </div>
   );
