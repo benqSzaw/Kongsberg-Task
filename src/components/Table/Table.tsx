@@ -1,7 +1,11 @@
 import "./table.scss";
 
 const Table = () => {
-  return <div>Table</div>;
+    return <div className="table-container">
+        <table>
+
+        </table>
+    </div>;
 };
 
 export default Table;

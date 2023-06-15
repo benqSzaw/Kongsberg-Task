@@ -1,33 +1,34 @@
-.form-container {
-  width: 100vw;
-  height: 60px;
-  padding: 15px;
+@import "../../common/global.scss";
 
+.form-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-
-  background-color: #efe2b2;
+  width: 100vw;
+  height: 60px;
+  padding: 15px;
+  background-color: $primary_color;
 
   button {
     height: 100%;
     border: solid black 1px;
-    padding: 0px 5px 0px 5px;
     border-radius: 5px;
-    background-color: #8d775c;
+    padding: 0px 5px 0px 5px;
+    background-color: $secondary_color;
     color: white;
     transition: 0.5s;
+
     &:hover {
-      background-color: #4d3009;
+      background-color: $hover_color;
     }
   }
 
   input {
     height: 100%;
     border: solid black 1px;
-    padding: 0px 5px 0px 5px;
     border-radius: 5px;
+    padding: 0px 5px 0px 5px;
 
     &:hover {
       border: solid #8d775c 1px;
@@ -35,7 +36,7 @@
 
     &:focus {
       outline: none !important;
-      box-shadow: 0 0 2px #4d3009;
+      box-shadow: 0 0 2px $hover_color;
     }
   }
 }
