@@ -1,13 +1,20 @@
 import "./form.sass";
+import { useRef } from "react";
 
-const Forn = () => {
+const Form = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const GetBooks = () => {
+    //
+  };
+
   return (
     <div>
-      <label htmlFor="title">Title: </label>
-      <input type="text" id="title" />
-      <button> Get books </button>
+      <div>Title</div>
+      <input type="text" ref={inputRef} />
+      <button onClick={GetBooks}> Get books </button>
     </div>
   );
 };
 
-export default Forn;
+export default Form;
