@@ -1,2 +1,9 @@
+@import "../../common/global.scss";
+
 .table-container {
+  width: 100vw;
+  height: 90%;
+  padding: 15px;
+  background-color: $secondary_color;
+  flex: 1 1 auto;
 }
