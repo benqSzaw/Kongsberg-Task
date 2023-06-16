@@ -1,17 +1,26 @@
-import { useState } from "react";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import {
+  setError,
+  setData,
+  setIsLoading,
+  selectIsLoading,
+  selectData,
+  selectError,
+} from "../redux/appSlice";
 
 const apiUrl = "https://openlibrary.org/search.json?";
 
 const useData = () => {
-  const [data, setResponse] = useState<AxiosResponse | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const data = useAppSelector(selectData);
+  const isLoading = useAppSelector(selectIsLoading);
+  const error = useAppSelector(selectError);
 
   const getData = (title: string | null, author: string | null) => {
-    setResponse(null);
-    setError(null);
-    setIsLoading(true);
+    dispatch(setError(null));
+    dispatch(setIsLoading(true));
+    dispatch(setData({}));
 
     const url =
       apiUrl +
@@ -22,20 +31,20 @@ const useData = () => {
     axios
       .get(url)
       .then((res) => {
-        setResponse(res.data);
+        dispatch(setData(res.data));
       })
-      .catch((err: string) => {
-        setError(err);
+      .catch((err) => {
+        dispatch(setError(err));
       })
       .finally(() => {
-        setIsLoading(false);
+        dispatch(setIsLoading(false));
       });
   };
 
   return {
     data,
-    error,
     isLoading,
+    error,
     getDataByTitle: (title: string) => getData(title, null),
     getDataByAuthor: (author: string) => getData(null, author),
   };
