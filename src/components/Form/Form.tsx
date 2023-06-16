@@ -1,12 +1,15 @@
 import "./form.scss";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import useData from "../../common/useData";
 
 const Form = () => {
   const [searchBy, setSearchBy] = useState<"Title" | "Author">("Title");
-  const { getDataByTitle, getDataByAuthor } = useData();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { clearData, getDataByTitle, getDataByAuthor } = useData();
 
   const SetOppositeSearchBy = () => {
+    if (inputRef.current) inputRef.current.value = "";
+    clearData()
     setSearchBy(searchBy == "Author" ? "Title" : "Author");
   };
 
@@ -24,7 +27,7 @@ const Form = () => {
   return (
     <div className="form-container">
       <button onClick={SetOppositeSearchBy}>Search by: {searchBy}</button>
-      <input type="text" onChange={(e) => GetBooks(e)} placeholder={searchBy} />
+      <input type="text" onChange={(e) => GetBooks(e)} ref={inputRef} placeholder={searchBy} />
     </div>
   );
 };

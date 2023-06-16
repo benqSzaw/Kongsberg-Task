@@ -17,6 +17,10 @@ const useData = () => {
   const isLoading = useAppSelector(selectIsLoading);
   const error = useAppSelector(selectError);
 
+  const clearData = () => {
+    dispatch(setData({}));
+  };
+
   const getData = (title: string | null, author: string | null) => {
     dispatch(setError(null));
     dispatch(setIsLoading(true));
@@ -45,6 +49,7 @@ const useData = () => {
     data,
     isLoading,
     error,
+    clearData,
     getDataByTitle: (title: string) => getData(title, null),
     getDataByAuthor: (author: string) => getData(null, author),
   };
