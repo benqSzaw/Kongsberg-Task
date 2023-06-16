@@ -18,18 +18,25 @@ const useData = () => {
   const error = useAppSelector(selectError);
 
   const clearData = () => {
-    dispatch(setData({}));
+    dispatch(setData(null));
+    dispatch(setIsLoading(false));
+    dispatch(setError(null));
   };
 
-  const getData = (title: string | null, author: string | null) => {
+  const getData = (
+    title: string | null,
+    author: string | null,
+    offset: number | null
+  ) => {
     dispatch(setError(null));
     dispatch(setIsLoading(true));
-    dispatch(setData({}));
+    dispatch(setData(null));
 
     const url =
       apiUrl +
       (title ? `title=${title}` : "") +
       (author ? `&author=${author}` : "") +
+      (offset ? `&offset=${offset}` : "") +
       "&limit=10";
 
     axios
@@ -50,8 +57,10 @@ const useData = () => {
     isLoading,
     error,
     clearData,
-    getDataByTitle: (title: string) => getData(title, null),
-    getDataByAuthor: (author: string) => getData(null, author),
+    getDataByTitle: (title: string, offset: number | null = null) =>
+      getData(title, null, offset),
+    getDataByAuthor: (author: string, offset: number | null = null) =>
+      getData(null, author, offset),
   };
 };
 

@@ -9,7 +9,7 @@ const Form = () => {
 
   const SetOppositeSearchBy = () => {
     if (inputRef.current) inputRef.current.value = "";
-    clearData()
+    clearData();
     setSearchBy(searchBy == "Author" ? "Title" : "Author");
   };
 
@@ -27,7 +27,12 @@ const Form = () => {
   return (
     <div className="form-container">
       <button onClick={SetOppositeSearchBy}>Search by: {searchBy}</button>
-      <input type="text" onChange={(e) => GetBooks(e)} ref={inputRef} placeholder={searchBy} />
+      <input
+        type="text"
+        onChange={(e) => GetBooks(e)}
+        ref={inputRef}
+        placeholder={searchBy}
+      />
     </div>
   );
 };
