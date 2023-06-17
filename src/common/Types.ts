@@ -25,7 +25,7 @@ interface Doc {
   publish_place?: string[];
   oclc?: string[];
   lcc?: string[];
-  isbn: string[];
+  isbn?: string[];
   last_modified_i: number;
   ebook_count_i: number;
   ebook_access: string;

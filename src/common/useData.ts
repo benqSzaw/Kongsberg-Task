@@ -8,8 +8,7 @@ import {
   selectData,
   selectError,
 } from "../redux/appSlice";
-
-const apiUrl = "https://openlibrary.org/search.json?";
+import { apiUrl } from "./Constants";
 
 const useData = () => {
   const dispatch = useAppDispatch();
