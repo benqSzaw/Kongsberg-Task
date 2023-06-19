@@ -13,13 +13,16 @@ const Form = () => {
     setSearchBy(searchBy == "Author" ? "Title" : "Author");
   };
 
-  const GetBooks = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const GetBooks = () => {
+    if (!inputRef.current) return;
+
+    const inputValue = inputRef.current.value;
     switch (searchBy) {
       case "Title":
-        getDataByTitle(e.currentTarget.value);
+        getDataByTitle(inputValue);
         break;
       case "Author":
-        getDataByAuthor(e.currentTarget.value);
+        getDataByAuthor(inputValue);
         break;
     }
   };
@@ -29,7 +32,8 @@ const Form = () => {
       <button onClick={SetOppositeSearchBy}>Search by: {searchBy}</button>
       <input
         type="text"
-        onChange={(e) => GetBooks(e)}
+        name="searchText"
+        onChange={GetBooks}
         ref={inputRef}
         placeholder={searchBy}
       />
