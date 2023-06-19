@@ -34,6 +34,7 @@
   }
 
   .header {
+    margin-top: 10px;
     font-size: larger;
     font-weight: bold;
     text-align: left;
@@ -41,7 +42,7 @@
 
   table {
     border-collapse: collapse;
-    margin: 25px 0 0 0;
+    margin: 25px 0 20px 0;
     font-size: 0.9em;
     width: 80%;
     min-width: 400px;
@@ -71,11 +72,6 @@
   table td {
     padding: 12px 15px;
   }
-
-  .cover-collumn {
-    text-align: center;
-  }
-
   .active-row {
     background-color: lightgray !important;
   }
@@ -108,10 +104,6 @@
         font-weight: bold;
         text-transform: uppercase;
       }
-    }
-
-    .cover-collumn {
-      display: none;
     }
   }
 }

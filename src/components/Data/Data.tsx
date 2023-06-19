@@ -1,10 +1,11 @@
 import "./data.scss";
 import useData from "../../common/useData";
-import { getImageUrl } from "../../common/Constants";
 import { useState, Fragment } from "react";
 import MoreInfo from "../MoreInfo/MoreInfo";
+
 const Data = () => {
   const { data, isLoading, error } = useData();
+  //TODO IN REDUX
   const [selectedRow, setSelectedRow] = useState(-1);
 
   const RowClickHandler = (id: number) => {
@@ -26,7 +27,6 @@ const Data = () => {
               <table>
                 <thead>
                   <tr>
-                    <th className="cover-collumn">Image </th>
                     <th className="id-collumn">ID</th>
                     <th>Title:</th>
                     <th>Author:</th>
@@ -42,16 +42,6 @@ const Data = () => {
                           className={selectedRow === id ? "active-row" : ""}
                           onClick={() => RowClickHandler(id)}
                         >
-                          <td className="cover-collumn">
-                            {book.cover_i ? (
-                              <img
-                                src={getImageUrl(book.cover_i.toString(), "S")}
-                                loading="lazy"
-                              />
-                            ) : (
-                              <b>X</b>
-                            )}
-                          </td>
                           <td data-label="ID" className="id-collumn">
                             {id + 1}
                           </td>
