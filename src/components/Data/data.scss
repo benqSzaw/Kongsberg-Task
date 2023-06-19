@@ -75,6 +75,10 @@
   .cover-collumn {
     text-align: center;
   }
+
+  .active-row {
+    background-color: lightgray !important;
+  }
 }
 
 @media screen and (max-width: 700px) {

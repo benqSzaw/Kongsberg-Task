@@ -1,9 +1,16 @@
 import "./data.scss";
 import useData from "../../common/useData";
 import { getImageUrl } from "../../common/Constants";
-
+import { useState, Fragment } from "react";
+import MoreInfo from "../MoreInfo/MoreInfo";
 const Data = () => {
   const { data, isLoading, error } = useData();
+  const [selectedRow, setSelectedRow] = useState(-1);
+
+  const RowClickHandler = (id: number) => {
+    if (selectedRow === id) setSelectedRow(-1);
+    else setSelectedRow(id);
+  };
 
   return (
     <div className="data-container">
@@ -29,43 +36,45 @@ const Data = () => {
                 </thead>
                 <tbody>
                   {data.docs.map((book, id) => {
-                    //MANY AUTHORS
-                    //MANY ISBN
-                    //TODO REST
-
                     return (
-                      <tr key={id}>
-                        <td className="cover-collumn">
-                          {book.cover_i ? (
-                            <img
-                              src={getImageUrl(book.cover_i.toString(), "S")}
-                              loading="lazy"
-                            />
-                          ) : (
-                            <b>X</b>
-                          )}
-                        </td>
-                        <td data-label="ID" className="id-collumn">
-                          {id + 1}
-                        </td>
-                        <td data-label="Title">{book.title}</td>
-                        <td data-label="Author">
-                          {book.author_name &&
-                            book.author_name.map((author, id) => {
-                              return <div key={id}>{author}</div>;
-                            })}
-                        </td>
-                        <td data-label="ISBN">
-                          {book.isbn ? book.isbn[0] : <b>X</b>}
-                        </td>
-                        <td data-label="Pages" className="pages-collumn">
-                          {book.number_of_pages_median ? (
-                            book.number_of_pages_median
-                          ) : (
-                            <b>X</b>
-                          )}
-                        </td>
-                      </tr>
+                      <Fragment key={id}>
+                        <tr
+                          className={selectedRow === id ? "active-row" : ""}
+                          onClick={() => RowClickHandler(id)}
+                        >
+                          <td className="cover-collumn">
+                            {book.cover_i ? (
+                              <img
+                                src={getImageUrl(book.cover_i.toString(), "S")}
+                                loading="lazy"
+                              />
+                            ) : (
+                              <b>X</b>
+                            )}
+                          </td>
+                          <td data-label="ID" className="id-collumn">
+                            {id + 1}
+                          </td>
+                          <td data-label="Title">{book.title}</td>
+                          <td data-label="Author">
+                            {book.author_name &&
+                              book.author_name.map((author, id) => {
+                                return <div key={id}>{author}</div>;
+                              })}
+                          </td>
+                          <td data-label="ISBN">
+                            {book.isbn ? book.isbn[0] : <b>X</b>}
+                          </td>
+                          <td data-label="Pages" className="pages-collumn">
+                            {book.number_of_pages_median ? (
+                              book.number_of_pages_median
+                            ) : (
+                              <b>X</b>
+                            )}
+                          </td>
+                        </tr>
+                        {selectedRow === id && <MoreInfo book={book} />}
+                      </Fragment>
                     );
                   })}
                 </tbody>

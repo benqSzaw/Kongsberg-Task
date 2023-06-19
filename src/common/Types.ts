@@ -8,7 +8,7 @@ export interface ApiType {
   offset: null | number;
 }
 
-interface Doc {
+export interface Doc {
   key: string;
   type: string;
   seed: string[];
