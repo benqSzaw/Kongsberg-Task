@@ -50,7 +50,7 @@ const Form = () => {
         name="searchText"
         onChange={GetBooks}
         ref={inputRef}
-        onInput={e => dispatch(setInputValue(e.currentTarget.value))}
+        onInput={(e) => dispatch(setInputValue(e.currentTarget.value))}
         value={inputValue}
         placeholder={searchBy}
       />

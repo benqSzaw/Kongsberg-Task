@@ -11,9 +11,9 @@ const MoreInfo = ({ book }: { book: Doc }) => {
   const { clearData } = useData();
 
   const HomeClick = () => {
-    clearData()
-    dispatch(setInputValue(""))
-  }
+    clearData();
+    dispatch(setInputValue(""));
+  };
 
   return (
     <tr className="moreinfo-container">
