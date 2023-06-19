@@ -63,7 +63,12 @@ const Data = () => {
                             )}
                           </td>
                         </tr>
-                        {selectedRow === id && <MoreInfo book={book} />}
+                        {selectedRow === id && (
+                          <MoreInfo
+                            book={book}
+                            resetClick={() => RowClickHandler(-1)}
+                          />
+                        )}
                       </Fragment>
                     );
                   })}

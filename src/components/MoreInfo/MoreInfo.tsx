@@ -6,7 +6,12 @@ import useData from "../../common/useData";
 import { useDispatch } from "react-redux";
 import { setInputValue } from "../../redux/appSlice";
 
-const MoreInfo = ({ book }: { book: Doc }) => {
+type MoreInfoConfig = {
+  book: Doc;
+  resetClick: () => void;
+};
+
+const MoreInfo = ({ book, resetClick }: MoreInfoConfig) => {
   const dispatch = useDispatch();
   const { clearData } = useData();
 
@@ -15,14 +20,22 @@ const MoreInfo = ({ book }: { book: Doc }) => {
     dispatch(setInputValue(""));
   };
 
+  const LibaryClick = () => {
+    resetClick();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <tr className="moreinfo-container">
       <td colSpan={6}>
         <div>
           <Breadcrumb>
             <Breadcrumb.Item onClick={HomeClick}>Home</Breadcrumb.Item>
-            <Breadcrumb.Item href="">Library</Breadcrumb.Item>
-            <Breadcrumb.Item active>Data</Breadcrumb.Item>
+            <Breadcrumb.Item onClick={LibaryClick}>Library</Breadcrumb.Item>
+            <Breadcrumb.Item active>{book.title}</Breadcrumb.Item>
           </Breadcrumb>
           {book.cover_i ? (
             <img
