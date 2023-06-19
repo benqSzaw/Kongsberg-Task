@@ -1,12 +1,12 @@
-import "./table.scss";
+import "./data.scss";
 import useData from "../../common/useData";
 import { getImageUrl } from "../../common/Constants";
 
-const Table = () => {
+const Data = () => {
   const { data, isLoading, error } = useData();
 
   return (
-    <div className="table-container">
+    <div className="data-container">
       {isLoading ? (
         <div>loading</div>
       ) : error ? (
@@ -63,4 +63,4 @@ const Table = () => {
   );
 };
 
-export default Table;
+export default Data;
