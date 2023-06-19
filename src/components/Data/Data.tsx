@@ -41,7 +41,9 @@ const Data = () => {
                               src={getImageUrl(book.cover_i.toString(), "S")}
                               loading="lazy"
                             />
-                          ) : <b>X</b>}
+                          ) : (
+                            <b>X</b>
+                          )}
                         </td>
                         <td data-label="ID" className="id-collumn">
                           {id + 1}
@@ -57,9 +59,11 @@ const Data = () => {
                           {book.isbn ? book.isbn[0] : <b>X</b>}
                         </td>
                         <td data-label="Pages" className="pages-collumn">
-                          {book.number_of_pages_median
-                            ? book.number_of_pages_median
-                            : <b>X</b>}
+                          {book.number_of_pages_median ? (
+                            book.number_of_pages_median
+                          ) : (
+                            <b>X</b>
+                          )}
                         </td>
                       </tr>
                     );

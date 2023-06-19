@@ -25,7 +25,7 @@ const useData = () => {
   const getData = (
     title: string | null,
     author: string | null,
-    offset: number | null
+    limit: number
   ) => {
     dispatch(setError(null));
     dispatch(setIsLoading(true));
@@ -35,8 +35,7 @@ const useData = () => {
       apiUrl +
       (title ? `title=${title}` : "") +
       (author ? `&author=${author}` : "") +
-      (offset ? `&offset=${offset}` : "") +
-      "&limit=10";
+      `&limit=${limit}`;
 
     if (title == "" || author == "") {
       clearData();
@@ -60,10 +59,10 @@ const useData = () => {
     isLoading,
     error,
     clearData,
-    getDataByTitle: (title: string, offset: number | null = null) =>
-      getData(title, null, offset),
-    getDataByAuthor: (author: string, offset: number | null = null) =>
-      getData(null, author, offset),
+    getDataByTitle: (title: string, limit: number) =>
+      getData(title, null, limit),
+    getDataByAuthor: (author: string, limit: number) =>
+      getData(null, author, limit),
   };
 };
 
