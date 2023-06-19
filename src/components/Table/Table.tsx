@@ -5,63 +5,59 @@ import { getImageUrl } from "../../common/Constants";
 const Table = () => {
   const { data, isLoading, error } = useData();
 
-  console.log(data, error);
-
   return (
     <div className="table-container">
       {isLoading ? (
         <div>loading</div>
+      ) : error ? (
+        <div>{error.message}</div>
       ) : (
-        <>
-          {data !== null && (
-            <>
-              {data.numFound !== 0 && (
-                <div> Founded: {data.numFound} books </div>
-              )}
-              <br />
-              {data.docs.map((book) => {
+        data !== null && (
+          <>
+            {data.numFound !== 0 && <div> Founded: {data.numFound} books </div>}
+
+            <table>
+              <thead>
+                <tr>
+                  <th />
+                  <th>ID</th>
+                  <th>Title:</th>
+                  <th>Author:</th>
+                  <th>ISBN:</th>
+                  <th>Median nr of pages:</th>
+                </tr>
+              </thead>
+              {data.docs.map((book, id) => {
+                //MANY AUTHORS
+                //MANY ISBN
+                //TODO REST
                 return (
-                  <>
-                    {/* MANY AUTHORS */}
-                    <div>
-                      Author:
-                      {book.author_name.map((author) => {
-                        return <div>{author}</div>;
-                      })}
-                    </div>
-                    <div>Title: {book.title}</div>
-                    {/* MANY ISBN */}
-                    <div>
-                      ISBN:
-                      {book.isbn?.[0]}
-                    </div>
-                    <div>
-                      Median numbers of pages: {book.number_of_pages_median}
-                    </div>
-                    {book.cover_i && (
-                      <img src={getImageUrl(book.cover_i.toString(), "S")} />
-                    )}
-                    {/* TODO REST */}
-                    <br />
-                  </>
+                  <tbody key={id}>
+                    <tr>
+                      <td>
+                        {book.cover_i && (
+                          <img
+                            src={getImageUrl(book.cover_i.toString(), "S")}
+                          />
+                        )}
+                      </td>
+                      <td>{id + 1}</td>
+                      <td>{book.title}</td>
+                      <td>
+                        {book.author_name &&
+                          book.author_name.map((author, id) => {
+                            return <div key={id}>{author}</div>;
+                          })}
+                      </td>
+                      <td>{book.isbn?.[0]}</td>
+                      <td>{book.number_of_pages_median}</td>
+                    </tr>
+                  </tbody>
                 );
               })}
-            </>
-          )}
-
-          <table>
-            <thead>
-              <tr>
-                <th>a</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>b</td>
-              </tr>
-            </tbody>
-          </table>
-        </>
+            </table>
+          </>
+        )
       )}
     </div>
   );
