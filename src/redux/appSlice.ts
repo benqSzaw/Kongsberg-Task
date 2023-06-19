@@ -42,6 +42,6 @@ export const { setData, setIsLoading, setError, setInputValue } =
 export const selectData = (state: RootState) => state.app.data;
 export const selectIsLoading = (state: RootState) => state.app.isLoading;
 export const selectError = (state: RootState) => state.app.error;
-export const selectDarkMode = (state: RootState) => state.app.inputValue;
+export const selectInputValue = (state: RootState) => state.app.inputValue;
 
 export default appSlice.reducer;
