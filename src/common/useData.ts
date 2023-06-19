@@ -38,6 +38,10 @@ const useData = () => {
       (offset ? `&offset=${offset}` : "") +
       "&limit=10";
 
+    if (title == "" || author == "") {
+      clearData();
+      return;
+    }
     axios
       .get(url)
       .then((res) => {
