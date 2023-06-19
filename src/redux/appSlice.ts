@@ -7,14 +7,14 @@ interface AppState {
   data: ApiType | null;
   isLoading: boolean;
   error: Error | null;
-  darkMode: boolean;
+  inputValue: string;
 }
 
 const initialState: AppState = {
   data: null,
   isLoading: false,
   error: null,
-  darkMode: false,
+  inputValue: "",
 };
 
 export const appSlice = createSlice({
@@ -30,18 +30,18 @@ export const appSlice = createSlice({
     setError: (state, action: PayloadAction<Error | null>) => {
       state.error = action.payload;
     },
-    triggerDarkMode: (state, action: PayloadAction<boolean>) => {
-      state.darkMode = action.payload;
+    setInputValue: (state, action: PayloadAction<string>) => {
+      state.inputValue = action.payload;
     },
   },
 });
 
-export const { setData, setIsLoading, setError, triggerDarkMode } =
+export const { setData, setIsLoading, setError, setInputValue } =
   appSlice.actions;
 
 export const selectData = (state: RootState) => state.app.data;
 export const selectIsLoading = (state: RootState) => state.app.isLoading;
 export const selectError = (state: RootState) => state.app.error;
-export const selectDarkMode = (state: RootState) => state.app.darkMode;
+export const selectDarkMode = (state: RootState) => state.app.inputValue;
 
 export default appSlice.reducer;

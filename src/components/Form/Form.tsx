@@ -1,12 +1,18 @@
 import "./form.scss";
 import { useState, useRef, useEffect } from "react";
 import useData from "../../common/useData";
+import { useAppSelector } from "../../redux/hooks";
+import { selectInputValue, setInputValue } from "../../redux/appSlice";
+import { useDispatch } from "react-redux";
 
 const Form = () => {
   const [searchBy, setSearchBy] = useState<"Title" | "Author">("Title");
   const [limit, setLimit] = useState(10);
   const inputRef = useRef<HTMLInputElement>(null);
   const { data, clearData, getDataByTitle, getDataByAuthor } = useData();
+
+  const inputValue = useAppSelector(selectInputValue);
+  const dispatch = useDispatch();
 
   const SetOppositeSearchBy = () => {
     if (inputRef.current) inputRef.current.value = "";
@@ -44,6 +50,8 @@ const Form = () => {
         name="searchText"
         onChange={GetBooks}
         ref={inputRef}
+        onInput={e => dispatch(setInputValue(e.currentTarget.value))}
+        value={inputValue}
         placeholder={searchBy}
       />
       {data && data.numFound > 0 && (
