@@ -1,5 +1,14 @@
+@import "./common/global.scss";
+
+html,
+head,
+body {
+  margin: 0px;
+}
+
 .main-container {
-  height: 100vh;
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
+  background-color: $secondary_color;
 }

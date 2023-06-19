@@ -8,53 +8,63 @@ const Data = () => {
   return (
     <div className="data-container">
       {isLoading ? (
-        <div>loading</div>
+        <span className="loader"></span>
       ) : error ? (
         <div>{error.message}</div>
       ) : (
         data !== null && (
           <>
-            {data.numFound !== 0 && <div> Founded: {data.numFound} books </div>}
+            {<div> Founded: {data.numFound} books </div>}
 
             <table>
               <thead>
                 <tr>
-                  <th />
-                  <th>ID</th>
+                  <th className="cover-collumn" />
+                  <th className="id-collumn">ID</th>
                   <th>Title:</th>
                   <th>Author:</th>
                   <th>ISBN:</th>
-                  <th>Median nr of pages:</th>
+                  <th className="pages-collumn">Pages:</th>
                 </tr>
               </thead>
-              {data.docs.map((book, id) => {
-                //MANY AUTHORS
-                //MANY ISBN
-                //TODO REST
-                return (
-                  <tbody key={id}>
-                    <tr>
-                      <td>
+              <tbody>
+                {data.docs.map((book, id) => {
+                  //MANY AUTHORS
+                  //MANY ISBN
+                  //TODO REST
+
+                  return (
+                    <tr key={id}>
+                      <td className="cover-collumn">
                         {book.cover_i && (
                           <img
                             src={getImageUrl(book.cover_i.toString(), "S")}
+                            loading="lazy"
                           />
                         )}
                       </td>
-                      <td>{id + 1}</td>
-                      <td>{book.title}</td>
-                      <td>
+                      <td data-label="ID" className="id-collumn">
+                        {id + 1}
+                      </td>
+                      <td data-label="Title">{book.title}</td>
+                      <td data-label="Author">
                         {book.author_name &&
                           book.author_name.map((author, id) => {
                             return <div key={id}>{author}</div>;
                           })}
                       </td>
-                      <td>{book.isbn?.[0]}</td>
-                      <td>{book.number_of_pages_median}</td>
+                      <td data-label="ISBN">
+                        {book.isbn ? book.isbn[0] : "Not found"}
+                      </td>
+                      <td data-label="Pages" className="pages-collumn">
+                        {book.number_of_pages_median
+                          ? book.number_of_pages_median
+                          : "Not found"}
+                      </td>
                     </tr>
-                  </tbody>
-                );
-              })}
+                  );
+                })}
+              </tbody>
             </table>
           </>
         )
