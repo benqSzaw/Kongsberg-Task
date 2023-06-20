@@ -2,16 +2,20 @@ import "./form.scss";
 import { useState, useEffect } from "react";
 import useData from "../../common/useData";
 import { useAppSelector } from "../../redux/hooks";
-import { selectInputValue, setInputValue } from "../../redux/appSlice";
+import {
+  selectInputValue,
+  selectLimit,
+  setInputValue,
+} from "../../redux/appSlice";
 import { useDispatch } from "react-redux";
 
 const Form = () => {
   const [searchBy, setSearchBy] = useState<"Title" | "Author">("Title");
-  const [limit, setLimit] = useState(10);
-  const { data, clearData, getDataByTitle, getDataByAuthor } = useData();
+  const { clearData, getDataByTitle, getDataByAuthor } = useData();
 
   const dispatch = useDispatch();
   const inputValue = useAppSelector(selectInputValue);
+  const limit = useAppSelector(selectLimit);
 
   const SetOppositeSearchBy = () => {
     dispatch(setInputValue(""));
@@ -19,18 +23,14 @@ const Form = () => {
     setSearchBy(searchBy == "Author" ? "Title" : "Author");
   };
 
-  const LoadMore = () => {
-    setLimit((prev) => prev + 10);
-  };
-
   useEffect(() => {
     if (inputValue == "") return;
     switch (searchBy) {
       case "Title":
-        getDataByTitle(inputValue, limit);
+        getDataByTitle(inputValue);
         break;
       case "Author":
-        getDataByAuthor(inputValue, limit);
+        getDataByAuthor(inputValue);
         break;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -46,9 +46,6 @@ const Form = () => {
         value={inputValue}
         placeholder={searchBy}
       />
-      {data && data.numFound > 0 && (
-        <button onClick={LoadMore}>Load more</button>
-      )}
     </div>
   );
 };

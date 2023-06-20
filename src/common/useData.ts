@@ -8,6 +8,7 @@ import {
   selectData,
   selectError,
   setRow,
+  selectLimit,
 } from "../redux/appSlice";
 import { apiUrl } from "./Constants";
 
@@ -16,6 +17,7 @@ const useData = () => {
   const data = useAppSelector(selectData);
   const isLoading = useAppSelector(selectIsLoading);
   const error = useAppSelector(selectError);
+  const limit = useAppSelector(selectLimit);
 
   const clearData = () => {
     dispatch(setData(null));
@@ -24,11 +26,7 @@ const useData = () => {
     dispatch(setRow(-1));
   };
 
-  const getData = (
-    title: string | null,
-    author: string | null,
-    limit: number
-  ) => {
+  const getData = (title: string | null, author: string | null) => {
     dispatch(setError(null));
     dispatch(setIsLoading(true));
     dispatch(setData(null));
@@ -46,15 +44,9 @@ const useData = () => {
     }
     axios
       .get(url)
-      .then((res) => {
-        dispatch(setData(res.data));
-      })
-      .catch((err) => {
-        dispatch(setError(err));
-      })
-      .finally(() => {
-        dispatch(setIsLoading(false));
-      });
+      .then((res) => dispatch(setData(res.data)))
+      .catch((err) => dispatch(setError(err)))
+      .finally(() => dispatch(setIsLoading(false)));
   };
 
   return {
@@ -62,10 +54,8 @@ const useData = () => {
     isLoading,
     error,
     clearData,
-    getDataByTitle: (title: string, limit: number) =>
-      getData(title, null, limit),
-    getDataByAuthor: (author: string, limit: number) =>
-      getData(null, author, limit),
+    getDataByTitle: (title: string) => getData(title, null),
+    getDataByAuthor: (author: string) => getData(null, author),
   };
 };
 
