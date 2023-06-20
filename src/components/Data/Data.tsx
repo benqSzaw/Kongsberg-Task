@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import MoreInfo from "../MoreInfo/MoreInfo";
 import { selectLimit, selectRow, setLimit, setRow } from "../../redux/appSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import Home from "../Home/Home";
 
 const Data = () => {
   const { data, isLoading, error } = useData();
@@ -28,7 +29,7 @@ const Data = () => {
       ) : error ? (
         <div className="error-message">{error.message}</div>
       ) : (
-        data && (
+        data ? (
           <>
             {<div className="header"> Founded: {data.numFound} books </div>}
             {data.numFound > 0 && (
@@ -78,7 +79,7 @@ const Data = () => {
               </>
             )}
           </>
-        )
+        ) : <Home />
       )}
     </div>
   );
