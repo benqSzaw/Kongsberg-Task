@@ -24,7 +24,6 @@ const Form = () => {
   };
 
   useEffect(() => {
-    if (inputValue == "") return;
     switch (searchBy) {
       case "Title":
         getDataByTitle(inputValue);
