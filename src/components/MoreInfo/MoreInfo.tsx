@@ -1,14 +1,18 @@
 import "./moreInfo.scss";
-import { Doc } from "../../common/Types";
-import { getImageUrl } from "../../common/Constants";
 import { Breadcrumb } from "react-bootstrap";
-import useData from "../../common/useData";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setInputValue, setRow } from "../../redux/appSlice";
+import { AuthorData, Doc } from "../../common/Types";
+import { getAuthorUrl, getImageUrl } from "../../common/Constants";
+import useData from "../../common/useData";
+import axios from "axios";
 
 const MoreInfo = ({ book }: { book: Doc }) => {
   const dispatch = useDispatch();
   const { clearData } = useData();
+  const [isLoading, setIsLoading] = useState(true);
+  const [authorData, setAuthorData] = useState<Array<AuthorData> | null>(null);
 
   const HomeClick = () => {
     clearData();
@@ -27,7 +31,15 @@ const MoreInfo = ({ book }: { book: Doc }) => {
     return str.length > n ? str.slice(0, n - 1) + "…" : str;
   };
 
-  console.log(book)
+  useEffect(() => {
+    axios
+      .get(getAuthorUrl(book.author_key[0]))
+      .then((res) => setAuthorData(res.data.entries))
+      .finally(() => setIsLoading(false));
+  }, []);
+
+  console.log(authorData)
+
   return (
     <tr className="moreinfo-container">
       <td colSpan={6}>
@@ -50,6 +62,24 @@ const MoreInfo = ({ book }: { book: Doc }) => {
               First publish year: {book.first_publish_year ?? "Not found"}
             </div>
             <div>
+              Other works:
+              {isLoading
+                ? " Loading ..."
+                : authorData?.map((book, id) => {
+                  return (
+                    <div key={id}>
+                      <div> {Truncate(book.title, 40)}</div>
+                      <div>
+                        <a
+                          href={`https://openlibrary.org/${book.key}`}
+                          target="_blank"
+                        >
+                          Check out
+                        </a>
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>

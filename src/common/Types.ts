@@ -94,3 +94,29 @@ export interface Doc {
   id_standard_ebooks?: string[];
   id_wikidata?: string[];
 }
+
+export interface AuthorData {
+  type: TypeOrAuthor;
+  title: string;
+  subjects?: string[] | null;
+  subject_places?: string[] | null;
+  subject_times?: string[] | null;
+  authors?: AuthorsEntity[] | null;
+  covers?: number[] | null;
+  key: string;
+  latest_revision: number;
+  revision: number;
+  created: CreatedOrLastModified;
+  last_modified: CreatedOrLastModified;
+}
+interface TypeOrAuthor {
+  key: string;
+}
+interface AuthorsEntity {
+  type: TypeOrAuthor;
+  author: TypeOrAuthor;
+}
+interface CreatedOrLastModified {
+  type: string;
+  value: string;
+}
