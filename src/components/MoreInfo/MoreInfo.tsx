@@ -38,8 +38,6 @@ const MoreInfo = ({ book }: { book: Doc }) => {
       .finally(() => setIsLoading(false));
   }, []);
 
-  console.log(authorData)
-
   return (
     <tr className="moreinfo-container">
       <td colSpan={6}>
@@ -66,20 +64,20 @@ const MoreInfo = ({ book }: { book: Doc }) => {
               {isLoading
                 ? " Loading ..."
                 : authorData?.map((book, id) => {
-                  return (
-                    <div key={id}>
-                      <div> {Truncate(book.title, 40)}</div>
-                      <div>
-                        <a
-                          href={`https://openlibrary.org/${book.key}`}
-                          target="_blank"
-                        >
-                          Check out
-                        </a>
+                    return (
+                      <div key={id}>
+                        <div> {Truncate(book.title, 40)}</div>
+                        <div>
+                          <a
+                            href={`https://openlibrary.org/${book.key}`}
+                            target="_blank"
+                          >
+                            Check out
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
             </div>
           </div>
         </div>
