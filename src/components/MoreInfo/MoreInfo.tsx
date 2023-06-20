@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setInputValue, setRow } from "../../redux/appSlice";
 import { AuthorData, Doc } from "../../common/Types";
-import { getAuthorUrl, getImageUrl } from "../../common/Constants";
+import { getAuthorUrl, getBookUrl, getImageUrl } from "../../common/Constants";
 import useData from "../../common/useData";
 import axios from "axios";
 
@@ -45,7 +45,11 @@ const MoreInfo = ({ book }: { book: Doc }) => {
           <Breadcrumb>
             <Breadcrumb.Item onClick={HomeClick}>Home</Breadcrumb.Item>
             <Breadcrumb.Item onClick={LibaryClick}>Library</Breadcrumb.Item>
-            <Breadcrumb.Item active>{Truncate(book.title, 30)}</Breadcrumb.Item>
+            <Breadcrumb.Item active>
+              <a href={getBookUrl(book.key)} target="_blank">
+                {Truncate(book.title, 30)}{" "}
+              </a>
+            </Breadcrumb.Item>
           </Breadcrumb>
           <div className="bottom-div">
             {book.cover_i ? (
@@ -65,17 +69,17 @@ const MoreInfo = ({ book }: { book: Doc }) => {
               {isLoading
                 ? " Loading ..."
                 : authorData?.map((book, id) => {
-                    return (
-                      <div key={id}>
-                        <a
-                          href={`https://openlibrary.org/${book.key}`}
-                          target="_blank"
-                        >
-                          {Truncate(book.title, 40)}
-                        </a>
-                      </div>
-                    );
-                  })}
+                  return (
+                    <div key={id}>
+                      <a
+                        href={`https://openlibrary.org/${book.key}`}
+                        target="_blank"
+                      >
+                        {Truncate(book.title, 40)}
+                      </a>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>
