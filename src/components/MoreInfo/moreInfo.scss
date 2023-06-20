@@ -1,10 +1,23 @@
 .moreinfo-container {
-  height: 350px;
+  max-height: 350px;
+  .main-div-container {
+    .bottom-div {
+      display: flex;
+      gap: 5px;
 
-  .new-data-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 10px;
+      img {
+        max-height: 200px;
+        max-width: 150px;
+      }
+      .img-placeholder {
+        height: 200px;
+        width: 130px;
+        border: solid black 1px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: lightgray;
+      }
+    }
   }
 }

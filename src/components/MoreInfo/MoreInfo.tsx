@@ -23,25 +23,34 @@ const MoreInfo = ({ book }: { book: Doc }) => {
     });
   };
 
+  const Truncate = (str: string, n: number) => {
+    return str.length > n ? str.slice(0, n - 1) + "…" : str;
+  };
+
+  console.log(book)
   return (
     <tr className="moreinfo-container">
       <td colSpan={6}>
-        <div>
+        <div className="main-div-container">
           <Breadcrumb>
             <Breadcrumb.Item onClick={HomeClick}>Home</Breadcrumb.Item>
             <Breadcrumb.Item onClick={LibaryClick}>Library</Breadcrumb.Item>
-            <Breadcrumb.Item active>{book.title}</Breadcrumb.Item>
+            <Breadcrumb.Item active>{Truncate(book.title, 30)}</Breadcrumb.Item>
           </Breadcrumb>
-          <div className="new-data-container">
+          <div className="bottom-div">
             {book.cover_i ? (
               <img
                 src={getImageUrl(book.cover_i.toString(), "M")}
                 loading="lazy"
               />
             ) : (
-              <b>X</b>
+              <div className="img-placeholder">No image</div>
             )}
-            First publish year: {book.first_publish_year ?? "Not found"}
+            <div>
+              First publish year: {book.first_publish_year ?? "Not found"}
+            </div>
+            <div>
+            </div>
           </div>
         </div>
       </td>
