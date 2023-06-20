@@ -7,6 +7,7 @@ import { AuthorData, Doc } from "../../common/Types";
 import { getAuthorUrl, getBookUrl, getImageUrl } from "../../common/Constants";
 import useData from "../../common/useData";
 import axios from "axios";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const MoreInfo = ({ book }: { book: Doc }) => {
   const dispatch = useDispatch();
@@ -53,9 +54,11 @@ const MoreInfo = ({ book }: { book: Doc }) => {
           </Breadcrumb>
           <div className="bottom-div">
             {book.cover_i ? (
-              <img
+              <LazyLoadImage
+                width={600} height={400}
+                placeholder={<div className="img-placeholder">Loading...</div>}
                 src={getImageUrl(book.cover_i.toString(), "M")}
-                loading="lazy"
+                alt="Image Alt"
               />
             ) : (
               <div className="img-placeholder">No image</div>
