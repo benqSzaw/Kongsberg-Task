@@ -8,6 +8,7 @@ import {
   setInputValue,
 } from "../../redux/appSlice";
 import { useDispatch } from "react-redux";
+import { AiOutlineHome } from "react-icons/ai";
 
 const Header = () => {
   const [searchBy, setSearchBy] = useState<"Title" | "Author">("Title");
@@ -17,9 +18,13 @@ const Header = () => {
   const inputValue = useAppSelector(selectInputValue);
   const limit = useAppSelector(selectLimit);
 
-  const SetOppositeSearchBy = () => {
+  const ClearDataAndInput = () => {
     dispatch(setInputValue(""));
     clearData();
+  };
+
+  const SetOppositeSearchBy = () => {
+    ClearDataAndInput();
     setSearchBy(searchBy == "Author" ? "Title" : "Author");
   };
 
@@ -36,8 +41,13 @@ const Header = () => {
   }, [inputValue, limit]);
 
   return (
-    <div className="form-container">
-      <button onClick={SetOppositeSearchBy}>Search by: {searchBy}</button>
+    <div className="header-container">
+      <div>
+        <button onClick={ClearDataAndInput}>
+          <AiOutlineHome />
+        </button>
+        <button onClick={SetOppositeSearchBy}>Search by: {searchBy}</button>
+      </div>
       <input
         type="text"
         name="searchText"
