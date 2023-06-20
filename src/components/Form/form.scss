@@ -36,3 +36,12 @@
     }
   }
 }
+@media only screen and (max-width: 300px) {
+  .form-container {
+    flex-direction: column;
+    height: 70px;
+    input {
+      width: 90vw;
+    }
+  }
+}

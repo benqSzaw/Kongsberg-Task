@@ -57,24 +57,22 @@ const MoreInfo = ({ book }: { book: Doc }) => {
               <div className="img-placeholder">No image</div>
             )}
             <div>
-              First publish year: {book.first_publish_year ?? "Not found"}
+              <b> First publish year:</b> <br />
+              {book.first_publish_year ?? "Not found"}
             </div>
             <div>
-              Other works:
+              <b>Other works:</b>
               {isLoading
                 ? " Loading ..."
                 : authorData?.map((book, id) => {
                     return (
                       <div key={id}>
-                        <div> {Truncate(book.title, 40)}</div>
-                        <div>
-                          <a
-                            href={`https://openlibrary.org/${book.key}`}
-                            target="_blank"
-                          >
-                            Check out
-                          </a>
-                        </div>
+                        <a
+                          href={`https://openlibrary.org/${book.key}`}
+                          target="_blank"
+                        >
+                          {Truncate(book.title, 40)}
+                        </a>
                       </div>
                     );
                   })}

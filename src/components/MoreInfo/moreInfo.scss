@@ -1,10 +1,20 @@
 .moreinfo-container {
   max-height: 350px;
   .main-div-container {
+    a {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.5s;
+      &:hover {
+        color: lightblue;
+      }
+    }
+
     .bottom-div {
       display: flex;
-      gap: 5px;
-
+      gap: 15px;
+      text-align: left;
       img {
         max-height: 200px;
         max-width: 150px;
@@ -17,6 +27,24 @@
         justify-content: center;
         align-items: center;
         background-color: lightgray;
+      }
+
+      a {
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .moreinfo-container {
+    max-height: none;
+    .main-div-container {
+      .bottom-div {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
       }
     }
   }

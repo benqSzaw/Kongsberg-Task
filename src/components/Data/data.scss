@@ -79,6 +79,8 @@
   }
 
   button {
+    margin-bottom: 10px;
+
     &:hover {
       background-color: $primary_color;
       color: black;
