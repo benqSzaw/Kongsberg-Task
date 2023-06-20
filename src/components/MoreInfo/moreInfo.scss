@@ -2,12 +2,18 @@
 
 .moreinfo-container {
   max-height: 350px;
+  border-bottom: 2px solid black;
   background-color: $secondary_color !important;
 
   .main-div-container {
     .breadcrumb li:last-child a {
       font-weight: normal;
     }
+    .breadcrumb li::before {
+      font-weight: bolder;
+      color: black;
+    }
+
     .bottom-div {
       display: flex;
       gap: 15px;

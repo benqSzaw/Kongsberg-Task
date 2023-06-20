@@ -37,7 +37,7 @@ const MoreInfo = ({ book }: { book: Doc }) => {
       .get(getAuthorUrl(book.author_key[0]))
       .then((res) => setAuthorData(res.data.entries))
       .finally(() => setIsLoading(false));
-  }, []);
+  });
 
   return (
     <tr className="moreinfo-container">

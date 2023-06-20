@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="technologies">
-        <span>Used technologies:</span>
+        <span>Technologies used:</span>
         <div className="logos">
           <SiReact />
           <SiTypescript />
