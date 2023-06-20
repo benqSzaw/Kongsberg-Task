@@ -1,4 +1,4 @@
-import "./form.scss";
+import "./header.scss";
 import { useState, useEffect } from "react";
 import useData from "../../common/useData";
 import { useAppSelector } from "../../redux/hooks";
@@ -9,7 +9,7 @@ import {
 } from "../../redux/appSlice";
 import { useDispatch } from "react-redux";
 
-const Form = () => {
+const Header = () => {
   const [searchBy, setSearchBy] = useState<"Title" | "Author">("Title");
   const { clearData, getDataByTitle, getDataByAuthor } = useData();
 
@@ -49,4 +49,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Header;
