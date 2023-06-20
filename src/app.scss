@@ -4,11 +4,11 @@ html,
 head,
 body {
   margin: 0px;
+  font-family: Baskerville;
 }
 
 .main-container {
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
-  background-color: $secondary_color;
+  min-height: 100vh;
 }

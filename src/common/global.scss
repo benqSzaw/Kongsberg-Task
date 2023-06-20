@@ -1,17 +1,34 @@
-$primary_color: #efe2b2;
-$secondary_color: #8d775c;
-$hover_color: #4d3009;
+$primary_color: #59372b;
+$secondary_color: #f7e7cf;
+$hover_color: #cca98d;
+$transitionTime: 0.5s;
+
+@mixin flexCenter() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 button {
   height: 100%;
   border: solid black 1px;
   border-radius: 5px;
   padding: 0px 5px 0px 5px;
-  background-color: $hover_color;
-  color: white;
-  transition: 0.5s;
+  background-color: $secondary_color;
+  color: black;
+  transition: $transitionTime;
 
   &:hover {
-    background-color: $secondary_color;
+    background-color: $hover_color;
+  }
+}
+
+a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  transition: $transitionTime;
+  &:hover {
+    color: $hover_color;
   }
 }

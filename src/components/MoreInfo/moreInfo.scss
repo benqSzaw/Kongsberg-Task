@@ -1,24 +1,18 @@
+@import "../../common/global.scss";
+
 .moreinfo-container {
   max-height: 350px;
-  .main-div-container {
-    a {
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.5s;
-      &:hover {
-        color: lightblue;
-      }
-    }
+  background-color: $secondary_color !important;
 
+  .main-div-container {
     .breadcrumb li:last-child a {
       font-weight: normal;
     }
-
     .bottom-div {
       display: flex;
       gap: 15px;
       text-align: left;
+
       img {
         max-height: 200px;
         max-width: 150px;
@@ -30,7 +24,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: lightgray;
+        background-color: white;
       }
 
       .placeholders {
@@ -52,9 +46,7 @@
     max-height: none;
     .main-div-container {
       .bottom-div {
-        text-align: center;
-        justify-content: center;
-        align-items: center;
+        @include flexCenter();
         flex-direction: column;
       }
     }

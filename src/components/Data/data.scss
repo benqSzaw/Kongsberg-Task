@@ -1,17 +1,14 @@
 @import "../../common/global.scss";
 
 .data-container {
-  background-color: $secondary_color;
   flex: 1 1 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flexCenter();
   flex-direction: column;
 
   .loader {
     width: 48px;
     height: 48px;
-    border: 5px solid black;
+    border: 5px solid $primary_color;
     border-bottom-color: transparent;
     border-radius: 50%;
     display: inline-block;
@@ -50,20 +47,17 @@
 
   table tbody tr:not(.moreinfo-container) {
     cursor: pointer;
-    transition: 0.5s;
+    transition: $transitionTime;
     &:hover {
-      background-color: lightcyan;
+      background-color: $hover_color;
     }
   }
 
   table thead tr {
-    background-color: #f3f3f3;
+    background-color: #ffffff;
   }
   table tbody tr:nth-of-type(odd) {
-    background-color: $primary_color;
-  }
-  table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+    background-color: $secondary_color;
   }
   table tbody tr:last-of-type {
     border-bottom: 2px solid black;
@@ -75,16 +69,11 @@
   }
 
   .active-row {
-    background-color: lightgray !important;
+    background-color: $hover_color !important;
   }
 
   button {
     margin-bottom: 10px;
-
-    &:hover {
-      background-color: $primary_color;
-      color: black;
-    }
   }
 }
 
