@@ -62,14 +62,10 @@ const Data = () => {
                                 })}
                             </td>
                             <td data-label="ISBN">
-                              {book.isbn ? book.isbn[0] : <b>X</b>}
+                              {book.isbn?.[0] ?? <b>X</b>}
                             </td>
                             <td data-label="Pages" className="pages-collumn">
-                              {book.number_of_pages_median ? (
-                                book.number_of_pages_median
-                              ) : (
-                                <b>X</b>
-                              )}
+                              {book.number_of_pages_median ?? <b>X</b>}
                             </td>
                           </tr>
                           {selectedRow === id && <MoreInfo book={book} />}

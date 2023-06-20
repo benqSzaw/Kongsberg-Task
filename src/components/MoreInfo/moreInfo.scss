@@ -1,2 +1,10 @@
 .moreinfo-container {
+  height: 350px;
+
+  .new-data-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+  }
 }

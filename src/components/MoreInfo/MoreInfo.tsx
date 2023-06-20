@@ -32,14 +32,17 @@ const MoreInfo = ({ book }: { book: Doc }) => {
             <Breadcrumb.Item onClick={LibaryClick}>Library</Breadcrumb.Item>
             <Breadcrumb.Item active>{book.title}</Breadcrumb.Item>
           </Breadcrumb>
-          {book.cover_i ? (
-            <img
-              src={getImageUrl(book.cover_i.toString(), "M")}
-              loading="lazy"
-            />
-          ) : (
-            <b>X</b>
-          )}
+          <div className="new-data-container">
+            {book.cover_i ? (
+              <img
+                src={getImageUrl(book.cover_i.toString(), "M")}
+                loading="lazy"
+              />
+            ) : (
+              <b>X</b>
+            )}
+            First publish year: {book.first_publish_year ?? "Not found"}
+          </div>
         </div>
       </td>
     </tr>
