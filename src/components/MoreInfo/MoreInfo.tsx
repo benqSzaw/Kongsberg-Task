@@ -55,7 +55,8 @@ const MoreInfo = ({ book }: { book: Doc }) => {
           <div className="bottom-div">
             {book.cover_i ? (
               <LazyLoadImage
-                width={600} height={400}
+                width={600}
+                height={400}
                 placeholder={<div className="img-placeholder">Loading...</div>}
                 src={getImageUrl(book.cover_i.toString(), "M")}
                 alt="Image Alt"
