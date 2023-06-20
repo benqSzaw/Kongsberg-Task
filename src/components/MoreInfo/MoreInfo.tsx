@@ -1,5 +1,5 @@
 import "./moreInfo.scss";
-import { Breadcrumb } from "react-bootstrap";
+import { Breadcrumb, Placeholder } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setInputValue, setRow } from "../../redux/appSlice";
@@ -66,9 +66,14 @@ const MoreInfo = ({ book }: { book: Doc }) => {
             </div>
             <div>
               <b>Other works:</b>
-              {isLoading
-                ? " Loading ..."
-                : authorData?.map((book, id) => {
+              {isLoading ? (
+                <Placeholder className="placeholders" as="div" animation="wave">
+                  <Placeholder xs={12} />
+                  <Placeholder xs={12} />
+                  <Placeholder xs={12} />
+                </Placeholder>
+              ) : (
+                authorData?.map((book, id) => {
                   return (
                     <div key={id}>
                       <a
@@ -79,7 +84,8 @@ const MoreInfo = ({ book }: { book: Doc }) => {
                       </a>
                     </div>
                   );
-                })}
+                })
+              )}
             </div>
           </div>
         </div>
