@@ -1,4 +1,5 @@
-export const apiUrl = "https://openlibrary.org/search.json?";
+export const apiUrl = "https://openlibrary.org/";
+export const apiSearchUrl = `https://openlibrary.org/search.json?`;
 const apiImageUrl = "https://covers.openlibrary.org/b/id/*.jpg";
 const apiAuthorUrl = "https://openlibrary.org/authors/*/works.json?limit=3";
 const apiBookUrl = "https://openlibrary.org/*";

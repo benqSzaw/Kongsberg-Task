@@ -10,7 +10,7 @@ import {
   setRow,
   selectLimit,
 } from "../redux/appSlice";
-import { apiUrl } from "./Constants";
+import { apiSearchUrl } from "./Constants";
 
 const useData = () => {
   const dispatch = useAppDispatch();
@@ -33,7 +33,7 @@ const useData = () => {
     dispatch(setRow(-1));
 
     const url =
-      apiUrl +
+      apiSearchUrl +
       (title ? `title=${title}` : "") +
       (author ? `&author=${author}` : "") +
       `&limit=${limit}`;
