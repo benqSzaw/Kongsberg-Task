@@ -72,8 +72,16 @@
   table td {
     padding: 12px 15px;
   }
+
   .active-row {
     background-color: lightgray !important;
+  }
+
+  button {
+    &:hover {
+      background-color: $primary_color;
+      color: black;
+    }
   }
 }
 
