@@ -37,7 +37,6 @@
     margin-top: 10px;
     font-size: larger;
     font-weight: bold;
-    text-align: left;
   }
 
   table {
@@ -49,21 +48,26 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   }
 
+  table tbody tr:not(.moreinfo-container) {
+    cursor: pointer;
+    transition: 0.5s;
+    &:hover {
+      background-color: lightcyan;
+    }
+  }
+
   table tbody tr {
     border-bottom: 1px solid #dddddd;
   }
-
   table thead tr {
     background-color: #f3f3f3;
   }
-
   table tbody tr:nth-of-type(odd) {
     background-color: $primary_color;
   }
   table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
   }
-
   table tbody tr:last-of-type {
     border-bottom: 2px solid black;
   }
