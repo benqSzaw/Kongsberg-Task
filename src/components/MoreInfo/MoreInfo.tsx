@@ -4,14 +4,9 @@ import { getImageUrl } from "../../common/Constants";
 import { Breadcrumb } from "react-bootstrap";
 import useData from "../../common/useData";
 import { useDispatch } from "react-redux";
-import { setInputValue } from "../../redux/appSlice";
+import { setInputValue, setRow } from "../../redux/appSlice";
 
-type MoreInfoConfig = {
-  book: Doc;
-  resetClick: () => void;
-};
-
-const MoreInfo = ({ book, resetClick }: MoreInfoConfig) => {
+const MoreInfo = ({ book }: { book: Doc }) => {
   const dispatch = useDispatch();
   const { clearData } = useData();
 
@@ -21,7 +16,7 @@ const MoreInfo = ({ book, resetClick }: MoreInfoConfig) => {
   };
 
   const LibaryClick = () => {
-    resetClick();
+    dispatch(setRow(-1));
     window.scrollTo({
       top: 0,
       behavior: "smooth",

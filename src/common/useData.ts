@@ -7,6 +7,7 @@ import {
   selectIsLoading,
   selectData,
   selectError,
+  setRow,
 } from "../redux/appSlice";
 import { apiUrl } from "./Constants";
 
@@ -20,6 +21,7 @@ const useData = () => {
     dispatch(setData(null));
     dispatch(setIsLoading(false));
     dispatch(setError(null));
+    dispatch(setRow(-1));
   };
 
   const getData = (
@@ -30,6 +32,7 @@ const useData = () => {
     dispatch(setError(null));
     dispatch(setIsLoading(true));
     dispatch(setData(null));
+    dispatch(setRow(-1));
 
     const url =
       apiUrl +

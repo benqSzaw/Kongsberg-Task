@@ -8,6 +8,7 @@ interface AppState {
   isLoading: boolean;
   error: Error | null;
   inputValue: string;
+  selectedRow: number;
 }
 
 const initialState: AppState = {
@@ -15,6 +16,7 @@ const initialState: AppState = {
   isLoading: false,
   error: null,
   inputValue: "",
+  selectedRow: -1,
 };
 
 export const appSlice = createSlice({
@@ -33,15 +35,19 @@ export const appSlice = createSlice({
     setInputValue: (state, action: PayloadAction<string>) => {
       state.inputValue = action.payload;
     },
+    setRow: (state, action: PayloadAction<number>) => {
+      state.selectedRow = action.payload;
+    },
   },
 });
 
-export const { setData, setIsLoading, setError, setInputValue } =
+export const { setData, setIsLoading, setError, setInputValue, setRow } =
   appSlice.actions;
 
 export const selectData = (state: RootState) => state.app.data;
 export const selectIsLoading = (state: RootState) => state.app.isLoading;
 export const selectError = (state: RootState) => state.app.error;
 export const selectInputValue = (state: RootState) => state.app.inputValue;
+export const selectRow = (state: RootState) => state.app.selectedRow;
 
 export default appSlice.reducer;

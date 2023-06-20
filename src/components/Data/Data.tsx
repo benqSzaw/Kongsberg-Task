@@ -1,16 +1,19 @@
 import "./data.scss";
 import useData from "../../common/useData";
-import { useState, Fragment } from "react";
+import { Fragment } from "react";
 import MoreInfo from "../MoreInfo/MoreInfo";
+import { selectRow, setRow } from "../../redux/appSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 const Data = () => {
   const { data, isLoading, error } = useData();
   //TODO IN REDUX
-  const [selectedRow, setSelectedRow] = useState(-1);
+  const dispatch = useAppDispatch();
+  const selectedRow = useAppSelector(selectRow);
 
   const RowClickHandler = (id: number) => {
-    if (selectedRow === id) setSelectedRow(-1);
-    else setSelectedRow(id);
+    if (selectedRow === id) dispatch(setRow(-1));
+    else dispatch(setRow(id));
   };
 
   return (
@@ -63,12 +66,7 @@ const Data = () => {
                             )}
                           </td>
                         </tr>
-                        {selectedRow === id && (
-                          <MoreInfo
-                            book={book}
-                            resetClick={() => RowClickHandler(-1)}
-                          />
-                        )}
+                        {selectedRow === id && <MoreInfo book={book} />}
                       </Fragment>
                     );
                   })}
