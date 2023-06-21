@@ -24,6 +24,7 @@ const Data = () => {
   };
 
   const ScrollToTop = () => {
+    dispatch(setRow(-1));
     window.scrollTo({ behavior: "smooth", top: 0 });
   };
 
