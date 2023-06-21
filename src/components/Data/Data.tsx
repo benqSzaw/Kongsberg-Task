@@ -29,7 +29,7 @@ const Data = () => {
 
   return (
     <div className="data-container">
-      {!isLoading ? (
+      {isLoading ? (
         <>
           <div className="book">
             <figure className="page"></figure>
