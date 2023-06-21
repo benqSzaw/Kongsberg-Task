@@ -5,7 +5,7 @@ import MoreInfo from "../MoreInfo/MoreInfo";
 import { selectLimit, selectRow, setLimit, setRow } from "../../redux/appSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import Home from "../Home/Home";
-
+import { AiOutlineArrowUp } from "react-icons/ai"
 const Data = () => {
   const { data, isLoading, error } = useData();
   //TODO IN REDUX
@@ -21,6 +21,10 @@ const Data = () => {
   const LoadMore = () => {
     dispatch(setLimit(limit + 10));
   };
+
+  const ScrollToTop = () => {
+    window.scrollTo({ behavior: "smooth", top: 0 })
+  }
 
   return (
     <div className="data-container">
@@ -75,6 +79,7 @@ const Data = () => {
                 </tbody>
               </table>
               <button onClick={LoadMore}>Load more</button>
+              <button className="scroll-top" onClick={ScrollToTop}> <AiOutlineArrowUp /> </button>
             </>
           )}
         </>
