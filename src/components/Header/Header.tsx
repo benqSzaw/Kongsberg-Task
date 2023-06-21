@@ -1,22 +1,22 @@
 import "./header.scss";
+import { AiOutlineHome } from "react-icons/ai";
 import { useState, useEffect } from "react";
-import useData from "../../common/useData";
+import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../redux/hooks";
 import {
   selectInputValue,
   selectLimit,
   setInputValue,
 } from "../../redux/appSlice";
-import { useDispatch } from "react-redux";
-import { AiOutlineHome } from "react-icons/ai";
+import useData from "../../common/useData";
 
 const Header = () => {
-  const [searchBy, setSearchBy] = useState<"Title" | "Author">("Title");
-  const { isLoading, clearData, getDataByTitle, getDataByAuthor } = useData();
-
   const dispatch = useDispatch();
   const inputValue = useAppSelector(selectInputValue);
   const limit = useAppSelector(selectLimit);
+
+  const [searchBy, setSearchBy] = useState<"Title" | "Author">("Title");
+  const { isLoading, clearData, getDataByTitle, getDataByAuthor } = useData();
 
   const ClearDataAndInput = () => {
     dispatch(setInputValue(""));

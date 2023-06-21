@@ -1,18 +1,18 @@
 import "./data.scss";
 import "./loader.scss";
-import useData from "../../common/useData";
+import { AiOutlineArrowUp } from "react-icons/ai";
 import { Fragment } from "react";
-import MoreInfo from "../MoreInfo/MoreInfo";
+import useData from "../../common/useData";
 import { selectLimit, selectRow, setLimit, setRow } from "../../redux/appSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import Home from "../Home/Home";
-import { AiOutlineArrowUp } from "react-icons/ai";
+import MoreInfo from "../MoreInfo/MoreInfo";
 
 const Data = () => {
-  const { data, isLoading, error } = useData();
   const dispatch = useAppDispatch();
   const limit = useAppSelector(selectLimit);
   const selectedRow = useAppSelector(selectRow);
+  const { data, isLoading, error } = useData();
 
   const RowClickHandler = (id: number) => {
     if (selectedRow === id) dispatch(setRow(-1));

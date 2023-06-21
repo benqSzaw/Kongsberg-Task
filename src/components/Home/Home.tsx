@@ -1,4 +1,3 @@
-import { apiUrl } from "../../common/Constants";
 import "./home.scss";
 import {
   SiRedux,
@@ -10,6 +9,7 @@ import {
   SiPrettier,
   SiEslint,
 } from "react-icons/si";
+import { apiUrl } from "../../common/Constants";
 
 const Home = () => {
   return (

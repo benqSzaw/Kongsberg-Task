@@ -2,12 +2,12 @@ import "./moreInfo.scss";
 import { Breadcrumb, Placeholder } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import axios from "axios";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { setInputValue, setRow } from "../../redux/appSlice";
 import { AuthorData, Doc } from "../../common/Types";
 import { getAuthorUrl, getBookUrl, getImageUrl } from "../../common/Constants";
 import useData from "../../common/useData";
-import axios from "axios";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const MoreInfo = ({ book }: { book: Doc }) => {
   const dispatch = useDispatch();

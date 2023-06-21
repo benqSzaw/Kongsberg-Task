@@ -42,6 +42,7 @@ const useData = () => {
       clearData();
       return;
     }
+
     axios
       .get(url)
       .then((res) => dispatch(setData(res.data)))
