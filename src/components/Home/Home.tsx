@@ -32,7 +32,9 @@ const Home = () => {
           Api from: {apiUrl}
         </a>
       </div>
-      <div className="author">Made by Beniamin Szawracki</div>
+      <div className="author">
+        <div>Made by</div> <div> Beniamin Szawracki</div>
+      </div>
     </div>
   );
 };

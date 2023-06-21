@@ -1,4 +1,5 @@
 import "./data.scss";
+import "./loader.scss";
 import useData from "../../common/useData";
 import { Fragment } from "react";
 import MoreInfo from "../MoreInfo/MoreInfo";
@@ -6,9 +7,9 @@ import { selectLimit, selectRow, setLimit, setRow } from "../../redux/appSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import Home from "../Home/Home";
 import { AiOutlineArrowUp } from "react-icons/ai";
+
 const Data = () => {
   const { data, isLoading, error } = useData();
-  //TODO IN REDUX
   const dispatch = useAppDispatch();
   const limit = useAppSelector(selectLimit);
   const selectedRow = useAppSelector(selectRow);
@@ -28,8 +29,15 @@ const Data = () => {
 
   return (
     <div className="data-container">
-      {isLoading ? (
-        <span className="loader"></span>
+      {!isLoading ? (
+        <>
+          <div className="book">
+            <figure className="page"></figure>
+            <figure className="page"></figure>
+            <figure className="page"></figure>
+          </div>
+          <span className="loading-text">Loading</span>
+        </>
       ) : error ? (
         <div className="error-message">{error.message}</div>
       ) : data ? (

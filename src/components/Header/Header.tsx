@@ -43,10 +43,16 @@ const Header = () => {
   return (
     <div className="header-container">
       <div>
-        <button disabled={isLoading} onClick={ClearDataAndInput}>
+        <button
+          disabled={isLoading}
+          className="home"
+          onClick={ClearDataAndInput}
+        >
           <AiOutlineHome />
         </button>
-        <button disabled={isLoading} onClick={SetOppositeSearchBy}>Search by: {searchBy}</button>
+        <button disabled={isLoading} onClick={SetOppositeSearchBy}>
+          Search by: {searchBy}
+        </button>
       </div>
       <input
         type="text"
