@@ -21,6 +21,10 @@ button {
   &:hover {
     background-color: $hover_color;
   }
+
+  &:disabled {
+    background-color: $hover_color;
+  }
 }
 
 a {

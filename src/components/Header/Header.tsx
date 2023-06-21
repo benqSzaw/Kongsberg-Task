@@ -12,7 +12,7 @@ import { AiOutlineHome } from "react-icons/ai";
 
 const Header = () => {
   const [searchBy, setSearchBy] = useState<"Title" | "Author">("Title");
-  const { clearData, getDataByTitle, getDataByAuthor } = useData();
+  const { isLoading, clearData, getDataByTitle, getDataByAuthor } = useData();
 
   const dispatch = useDispatch();
   const inputValue = useAppSelector(selectInputValue);
@@ -43,10 +43,10 @@ const Header = () => {
   return (
     <div className="header-container">
       <div>
-        <button onClick={ClearDataAndInput}>
+        <button disabled={isLoading} onClick={ClearDataAndInput}>
           <AiOutlineHome />
         </button>
-        <button onClick={SetOppositeSearchBy}>Search by: {searchBy}</button>
+        <button disabled={isLoading} onClick={SetOppositeSearchBy}>Search by: {searchBy}</button>
       </div>
       <input
         type="text"
